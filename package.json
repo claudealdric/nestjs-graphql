@@ -1,7 +1,7 @@
 {
   "name": "nestjs-graphql",
   "version": "0.0.1",
-  "description": "",
+  "description": "Proof of concept for NestJS + GraphQL",
   "author": "Claude Aldric",
   "private": true,
   "license": "MIT",
