@@ -1,14 +1,19 @@
+import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UserInput } from './dto/user.input';
 import { User } from './user.entity';
-import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly usersRepository: Repository<User>,
   ) {}
+
+  async createUser(user: UserInput): Promise<User> {
+    return this.usersRepository.save(user);
+  }
 
   async getAllUsers(): Promise<User[]> {
     const users = await this.usersRepository.find();
@@ -20,6 +25,12 @@ export class UsersService {
 
   getUserById(id: number): Promise<User> {
     return this.usersRepository.findOneOrFail(id);
+  }
+
+  async updateUserById(id: number, userInput: UserInput): Promise<User> {
+    let user = await this.usersRepository.findOneOrFail(id);
+    user = { ...user, ...userInput };
+    return this.usersRepository.save(user);
   }
 
   private async seedUsers(): Promise<void> {
