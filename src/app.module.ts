@@ -1,4 +1,6 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import 'dotenv/config';
 import { join } from 'path';
@@ -18,6 +20,7 @@ import { AppService } from './app.service';
       migrations: [join(__dirname, 'migrations/*.{ts,js}')],
       cli: { migrationsDir: join(__dirname, 'migrations') },
     }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({ driver: ApolloDriver }),
   ],
   controllers: [AppController],
   providers: [AppService],
