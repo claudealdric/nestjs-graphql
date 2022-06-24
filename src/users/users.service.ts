@@ -11,7 +11,7 @@ export class UsersService {
     @InjectRepository(User) private readonly usersRepository: Repository<User>,
   ) {}
 
-  async createUser(user: UserInput): Promise<User> {
+  createUser(user: UserInput): Promise<User> {
     return this.usersRepository.save(user);
   }
 
