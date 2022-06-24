@@ -34,7 +34,7 @@ export class UsersService {
   private createFakeUser(): User {
     const user = this.usersRepository.create();
     user.firstName = faker.name.firstName();
-    if (Math.random() > 0.8) {
+    if (Math.random() > 0.2) {
       user.lastName = faker.name.lastName();
     }
     return user;
