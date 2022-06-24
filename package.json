@@ -5,6 +5,9 @@
   "author": "Claude Aldric",
   "private": true,
   "license": "MIT",
+  "volta": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
