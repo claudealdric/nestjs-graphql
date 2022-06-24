@@ -6,8 +6,8 @@ import { UsersService } from './users.service';
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Query(() => User, { name: 'users' })
-  async getAllUsers() {
+  @Query(() => [User], { name: 'users' })
+  async getAllUsers(): Promise<User[]> {
     return this.usersService.getAllUsers();
   }
 }
