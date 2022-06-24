@@ -20,7 +20,11 @@ import { AppService } from './app.service';
       migrations: [join(__dirname, 'migrations/*.{ts,js}')],
       cli: { migrationsDir: join(__dirname, 'migrations') },
     }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({ driver: ApolloDriver }),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
