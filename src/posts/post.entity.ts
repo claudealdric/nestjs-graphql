@@ -1,5 +1,6 @@
 import { BaseEntity } from '../shared/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToOne } from 'typeorm';
+import { User } from '../users/user.entity';
 
 @Entity()
 export class Post extends BaseEntity {
@@ -8,4 +9,7 @@ export class Post extends BaseEntity {
 
   @Column({ length: 280 })
   body: string;
+
+  @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
+  user: User;
 }
