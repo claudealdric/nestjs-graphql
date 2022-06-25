@@ -3,9 +3,9 @@
 # ------------------------------------------------------
 
 interface BaseModel {
-  createdDate: DateTime!
+  createDate: DateTime!
   id: ID!
-  updatedDate: DateTime!
+  updateDate: DateTime!
 }
 
 """
@@ -24,11 +24,11 @@ type Query {
 }
 
 type User implements BaseModel {
-  createdDate: DateTime!
+  createDate: DateTime!
   firstName: String!
   id: ID!
   lastName: String
-  updatedDate: DateTime!
+  updateDate: DateTime!
 }
 
 input UserInput {

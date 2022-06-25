@@ -10,8 +10,8 @@ export abstract class BaseEntity implements BaseObject {
   id: number;
 
   @CreateDateColumn()
-  createdDate: Date;
+  createDate: Date;
 
   @UpdateDateColumn()
-  updatedDate: Date;
+  updateDate: Date;
 }

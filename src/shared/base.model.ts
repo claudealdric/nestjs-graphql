@@ -7,8 +7,8 @@ export abstract class BaseModel implements BaseObject {
   id: number;
 
   @Field(() => GraphQLISODateTime)
-  createdDate: Date;
+  createDate: Date;
 
   @Field(() => GraphQLISODateTime)
-  updatedDate: Date;
+  updateDate: Date;
 }
