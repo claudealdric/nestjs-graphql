@@ -1,10 +1,8 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { BaseModel } from 'src/shared/base.model';
 
-@ObjectType()
-export class User {
-  @Field(() => Int)
-  id: number;
-
+@ObjectType({ implements: () => [BaseModel] })
+export class User extends BaseModel {
   @Field()
   firstName: string;
 
