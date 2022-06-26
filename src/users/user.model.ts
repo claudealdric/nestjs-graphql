@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Post } from 'src/posts/post.model';
-import { BaseModel } from 'src/shared/base.model';
+import { Post } from '../posts/post.model';
+import { BaseModel } from '../shared/base.model';
 
 @ObjectType({ implements: () => [BaseModel] })
 export class User extends BaseModel {
