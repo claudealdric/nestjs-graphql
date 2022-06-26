@@ -33,7 +33,7 @@ export class UsersResolver {
 
   @Query(() => [User], { name: 'users' })
   getAllUsers(): Promise<User[]> {
-    return this.usersService.getAllUsers();
+    return this.usersService.getUsers();
   }
 
   @Mutation(() => User)

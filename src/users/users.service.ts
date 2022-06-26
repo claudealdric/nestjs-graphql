@@ -15,7 +15,7 @@ export class UsersService {
     return this.repository.save(user);
   }
 
-  async getAllUsers(): Promise<User[]> {
+  async getUsers(): Promise<User[]> {
     let users = await this.repository.find();
     if (users.length < 2) {
       await this.seedUsers();
