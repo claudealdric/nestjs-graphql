@@ -9,6 +9,10 @@ export class PostsService {
     @InjectRepository(Post) private readonly repository: Repository<Post>,
   ) {}
 
+  getPosts(): Promise<Post[]> {
+    return this.repository.find();
+  }
+
   getPostsForUser(userId: number): Promise<Post[]> {
     return this.repository.find({ where: { userId: userId } });
   }

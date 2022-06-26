@@ -27,6 +27,7 @@ type Post implements BaseModel {
 }
 
 type Query {
+  posts: [Post!]!
   user(id: Int!): User!
   users: [User!]!
 }
