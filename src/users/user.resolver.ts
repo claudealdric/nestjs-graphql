@@ -9,7 +9,7 @@ import {
 } from '@nestjs/graphql';
 import { Post as PostEntity } from 'src/posts/post.entity';
 import { Post as PostModel } from 'src/posts/post.model';
-import { PostsService } from 'src/posts/posts/posts.service';
+import { PostsService } from 'src/posts/posts.service';
 import { UserInput } from './dto/user.input';
 import { User } from './user.model';
 import { UsersService } from './users.service';
