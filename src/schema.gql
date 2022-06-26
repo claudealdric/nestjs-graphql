@@ -33,14 +33,20 @@ type Query {
 
 type User implements BaseModel {
   createDate: DateTime!
+  email: String!
   firstName: String!
   id: ID!
   lastName: String
+  password: String!
   posts: [Post!]!
   updateDate: DateTime!
+  username: String!
 }
 
 input UserInput {
+  email: String!
   firstName: String!
   lastName: String
+  password: String!
+  username: String!
 }

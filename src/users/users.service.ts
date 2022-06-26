@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { BaseEntity } from '../shared/base.entity';
 import { UserInput } from './dto/user.input';
 import { User } from './user.entity';
 
@@ -43,8 +44,18 @@ export class UsersService {
   }
 
   private createFakeUser(): User {
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+    const city = faker.address.cityName();
+    const state = faker.address.stateAbbr();
     const user = this.usersRepository.create();
-    user.firstName = faker.name.firstName();
+
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.username = faker.internet.userName();
+    user.email = faker.internet.exampleEmail(firstName, lastName);
+    user.password = faker.random.alphaNumeric(64);
+    user.location = `${city}, ${state}`;
     if (Math.random() > 0.2) {
       user.lastName = faker.name.lastName();
     }

@@ -3,7 +3,10 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { User } from '../user.entity';
 
 @InputType()
-export class UserInput implements Pick<User, 'firstName' | 'lastName'> {
+export class UserInput
+  implements
+    Pick<User, 'firstName' | 'lastName' | 'username' | 'email' | 'password'>
+{
   @Field()
   @IsNotEmpty()
   @IsString()
@@ -11,6 +14,20 @@ export class UserInput implements Pick<User, 'firstName' | 'lastName'> {
 
   @Field({ nullable: true })
   @IsOptional()
-  @IsString()
   lastName?: string;
+
+  @Field()
+  @IsNotEmpty()
+  @IsString()
+  username: string;
+
+  @Field()
+  @IsNotEmpty()
+  @IsString()
+  email: string;
+
+  @Field()
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }

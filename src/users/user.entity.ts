@@ -10,6 +10,18 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   lastName?: string;
 
+  @Column()
+  username: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  @Column({ nullable: true })
+  location: string;
+
   @OneToMany(() => Post, (post) => post.user, { nullable: true })
   posts: Post[];
 }

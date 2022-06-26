@@ -10,6 +10,15 @@ export class User extends BaseModel {
   @Field({ nullable: true })
   lastName?: string;
 
+  @Field()
+  username: string;
+
+  @Field()
+  email: string;
+
+  @Field()
+  password: string;
+
   @Field(() => [Post], { nullable: 'items' })
   posts: Post[];
 }
