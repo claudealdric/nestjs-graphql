@@ -1,7 +1,8 @@
 import { Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { User as UserEntity } from '../users/user.entity';
 import { User as UserModel } from '../users/user.model';
-import { UsersService } from '../users/users.service';
 import { Post as PostEntity } from './post.entity';
 import { Post as PostModel } from './post.model';
 import { PostsService } from './posts.service';
@@ -10,12 +11,13 @@ import { PostsService } from './posts.service';
 export class PostsResolver {
   constructor(
     private readonly postsService: PostsService,
-    private readonly usersService: UsersService,
+    @InjectRepository(UserEntity)
+    private readonly usersRepository: Repository<UserEntity>,
   ) {}
 
   @ResolveField('user', () => UserModel)
   getUser(@Parent() post: PostModel): Promise<UserEntity> {
-    return this.usersService.getUserById(post.userId);
+    return this.usersRepository.findOneOrFail(post.userId);
   }
 
   @Query(() => [PostModel], { name: 'posts' })

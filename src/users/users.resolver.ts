@@ -7,9 +7,10 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Post as PostEntity } from '../posts/post.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Post, Post as PostEntity } from '../posts/post.entity';
 import { Post as PostModel } from '../posts/post.model';
-import { PostsService } from '../posts/posts.service';
 import { UserInput } from './dto/user.input';
 import { User } from './user.model';
 import { UsersService } from './users.service';
@@ -17,13 +18,14 @@ import { UsersService } from './users.service';
 @Resolver(() => User)
 export class UsersResolver {
   constructor(
+    @InjectRepository(Post)
+    private readonly postsRepository: Repository<Post>,
     private readonly usersService: UsersService,
-    private readonly postsService: PostsService,
   ) {}
 
   @ResolveField('posts', () => [PostModel])
   getPosts(@Parent() user: User): Promise<PostEntity[]> {
-    return this.postsService.getPostsForUser(user.id);
+    return this.postsRepository.find({ where: { userId: user.id } });
   }
 
   @Query(() => User, { name: 'user' })
