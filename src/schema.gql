@@ -36,7 +36,7 @@ type User implements BaseModel {
   email: String!
   firstName: String!
   id: ID!
-  lastName: String
+  lastName: String!
   password: String!
   posts: [Post!]!
   updateDate: DateTime!
@@ -46,7 +46,7 @@ type User implements BaseModel {
 input UserInput {
   email: String!
   firstName: String!
-  lastName: String
+  lastName: String!
   password: String!
   username: String!
 }

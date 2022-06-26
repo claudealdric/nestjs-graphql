@@ -7,8 +7,8 @@ export class User extends BaseEntity {
   @Column()
   firstName: string;
 
-  @Column({ nullable: true })
-  lastName?: string;
+  @Column()
+  lastName: string;
 
   @Column()
   username: string;

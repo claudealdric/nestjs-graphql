@@ -7,8 +7,8 @@ export class User extends BaseModel {
   @Field()
   firstName: string;
 
-  @Field({ nullable: true })
-  lastName?: string;
+  @Field()
+  lastName: string;
 
   @Field()
   username: string;
