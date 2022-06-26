@@ -24,6 +24,7 @@ type Post implements BaseModel {
   id: ID!
   title: String
   updateDate: DateTime!
+  userId: Int!
 }
 
 type Query {
