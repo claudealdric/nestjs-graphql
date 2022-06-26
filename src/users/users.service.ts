@@ -2,7 +2,6 @@ import { faker } from '@faker-js/faker';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { BaseEntity } from '../shared/base.entity';
 import { UserInput } from './dto/user.input';
 import { User } from './user.entity';
 
@@ -17,9 +16,10 @@ export class UsersService {
   }
 
   async getAllUsers(): Promise<User[]> {
-    const users = await this.usersRepository.find();
+    let users = await this.usersRepository.find();
     if (users.length < 2) {
       await this.seedUsers();
+      users = await this.usersRepository.find();
     }
     return users;
   }
@@ -52,13 +52,11 @@ export class UsersService {
 
     user.firstName = firstName;
     user.lastName = lastName;
-    user.username = faker.internet.userName();
+    user.username = faker.internet.userName(firstName, lastName);
     user.email = faker.internet.exampleEmail(firstName, lastName);
     user.password = faker.random.alphaNumeric(64);
     user.location = `${city}, ${state}`;
-    if (Math.random() > 0.2) {
-      user.lastName = faker.name.lastName();
-    }
+
     return user;
   }
 }
