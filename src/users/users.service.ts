@@ -8,30 +8,30 @@ import { User } from './user.entity';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(User) private readonly usersRepository: Repository<User>,
+    @InjectRepository(User) private readonly repository: Repository<User>,
   ) {}
 
   createUser(user: UserInput): Promise<User> {
-    return this.usersRepository.save(user);
+    return this.repository.save(user);
   }
 
   async getAllUsers(): Promise<User[]> {
-    let users = await this.usersRepository.find();
+    let users = await this.repository.find();
     if (users.length < 2) {
       await this.seedUsers();
-      users = await this.usersRepository.find();
+      users = await this.repository.find();
     }
     return users;
   }
 
   getUserById(id: number): Promise<User> {
-    return this.usersRepository.findOneOrFail(id);
+    return this.repository.findOneOrFail(id);
   }
 
   async updateUserById(id: number, userInput: UserInput): Promise<User> {
-    let user = await this.usersRepository.findOneOrFail(id);
+    let user = await this.repository.findOneOrFail(id);
     user = { ...user, ...userInput };
-    return this.usersRepository.save(user);
+    return this.repository.save(user);
   }
 
   private async seedUsers(): Promise<void> {
@@ -40,7 +40,7 @@ export class UsersService {
       const newUser = this.createFakeUser();
       users.push(newUser);
     }
-    await this.usersRepository.save(users);
+    await this.repository.save(users);
   }
 
   private createFakeUser(): User {
@@ -48,7 +48,7 @@ export class UsersService {
     const lastName = faker.name.lastName();
     const city = faker.address.cityName();
     const state = faker.address.stateAbbr();
-    const user = this.usersRepository.create();
+    const user = this.repository.create();
 
     user.firstName = firstName;
     user.lastName = lastName;
