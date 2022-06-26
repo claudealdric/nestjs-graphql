@@ -10,6 +10,9 @@ export class Post extends BaseEntity {
   @Column({ length: 280 })
   body: string;
 
+  @Column()
+  userId: number;
+
   @ManyToOne(() => User, (user) => user.posts, { onDelete: 'CASCADE' })
   user: User;
 }

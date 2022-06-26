@@ -18,6 +18,14 @@ type Mutation {
   updateUser(id: Int!, userInput: UserInput!): User!
 }
 
+type Post implements BaseModel {
+  body: String!
+  createDate: DateTime!
+  id: ID!
+  title: String
+  updateDate: DateTime!
+}
+
 type Query {
   user(id: Int!): User!
   users: [User!]!
@@ -28,6 +36,7 @@ type User implements BaseModel {
   firstName: String!
   id: ID!
   lastName: String
+  posts: [Post!]!
   updateDate: DateTime!
 }
 
