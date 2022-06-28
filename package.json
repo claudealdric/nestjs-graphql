@@ -15,6 +15,7 @@
     "migration:generate": "npm run typeorm migration:generate -- -n",
     "migration:run": "npm run typeorm migration:run",
     "prebuild": "rimraf dist",
+    "postbuild": "rimraf src",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
     "start:dev": "nest start --watch",
