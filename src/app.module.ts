@@ -17,6 +17,8 @@ import { UsersModule } from './users/users.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       persistedQueries: false,
+      introspection: true,
+      playground: true,
     }),
     UsersModule,
     PostsModule,
